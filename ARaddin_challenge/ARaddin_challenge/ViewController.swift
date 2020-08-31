@@ -14,6 +14,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    @IBOutlet weak var constrainSlideTable: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         
