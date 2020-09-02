@@ -25,7 +25,7 @@
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="807"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="arItems" rowHeight="69" id="WMZ-dP-CHJ">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="arItems" rowHeight="69" id="WMZ-dP-CHJ" customClass="ItemTableViewCell" customModule="ARaddin_challenge" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="69"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WMZ-dP-CHJ" id="zwk-Ux-Etr">
@@ -46,6 +46,9 @@
                                                         <constraint firstItem="Bfb-IB-Lqa" firstAttribute="height" secondItem="zwk-Ux-Etr" secondAttribute="height" multiplier="0.681159" id="P2R-wU-fqA"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="nameLabel" destination="Bfb-IB-Lqa" id="VRk-BE-t8e"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -75,6 +78,7 @@
                     <connections>
                         <outlet property="constrainSlideTable" destination="Wzi-eB-QYe" id="b9b-lQ-bGq"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="tableView" destination="V4V-o3-B7w" id="S2g-XI-V0D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

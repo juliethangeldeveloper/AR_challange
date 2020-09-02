@@ -12,23 +12,26 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet var sceneView: ARSCNView!
-    
     @IBOutlet weak var constrainSlideTable: NSLayoutConstraint!
+    var dataArItems = ItemDataForTable()
+    var arItems = [ARItem]()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        downloadJSON(atURL: "https://api.sketchfab.com/v2/models?token=7f9e2e823a074646bec2e89b96e9b7fe")
+
         // Set the view's delegate
         sceneView.delegate = self
         
+       
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+         tableView.delegate = dataArItems
+        tableView.dataSource = dataArItems
         
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
+      
     }
     
     override func viewWillAppear(_ animated: Bool) {
