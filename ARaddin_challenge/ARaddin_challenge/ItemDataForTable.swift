@@ -10,15 +10,26 @@ import UIKit
 
 class ItemDataForTable: UIView, UITableViewDelegate, UITableViewDataSource {
     var arItems = [ARItem]()
+    var constrain = NSLayoutConstraint()
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arItems.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "arItems", for: indexPath) as! ItemTableViewCell
         cell.nameLabel.text = arItems[indexPath.row].name
+        cell.layer.backgroundColor = UIColor.clear.cgColor
+
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+          constrain.constant = 500
     }
     
 

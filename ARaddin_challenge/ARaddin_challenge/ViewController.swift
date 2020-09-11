@@ -14,7 +14,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var sceneView: ARSCNView!
-    @IBOutlet weak var constrainSlideTable: NSLayoutConstraint!
+    @IBOutlet weak var rightConstrain: NSLayoutConstraint!
+    
     var dataArItems = ItemDataForTable()
     var arItems = [ARItem]()
 
@@ -30,8 +31,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
          tableView.delegate = dataArItems
         tableView.dataSource = dataArItems
-        
-      
+        rightConstrain.constant = 0
+        dataArItems.constrain = rightConstrain
+        swipeSetUp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +63,42 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return node
     }
 */
+    
+    func swipeSetUp(){
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
+        self.view.addGestureRecognizer(swipeRight)
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+    }
+    
+    //Swipe gesture
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizer.Direction.right:
+                print("Swiped right")
+            UIView.animate(withDuration: 0.7) {
+                self.rightConstrain.constant = 0
+
+                                     }
+                case UISwipeGestureRecognizer.Direction.left:
+                       print("Swiped left")
+                       UIView.animate(withDuration: 0.7) {
+                        self.rightConstrain.constant = 500
+
+                       }
+
+            default:
+                break
+            }
+        }
+    }
+    
+    //swipe left for team list of players or to leave Ar player experience
+  
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
