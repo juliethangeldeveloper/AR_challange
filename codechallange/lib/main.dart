@@ -1,4 +1,3 @@
-import 'package:codechallange/registrationPageWidget.dart';
 import 'package:codechallange/signInWidget.dart';
 import 'package:codechallange/user.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +8,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => User()),
-        ],
+          ChangeNotifierProvider<User>(create: (_) => User())],
         child: MaterialApp(
             title: 'Project',
             theme: ThemeData(

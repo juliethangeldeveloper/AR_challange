@@ -1,5 +1,7 @@
+import 'package:codechallange/database_helper.dart';
 import 'package:codechallange/textFormFieldUtil.dart';
 import 'package:codechallange/user.dart';
+import 'package:codechallange/userProfileWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +25,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
       TextEditingController();
   final TextEditingController _textEditingEmailController =
       TextEditingController();
+  var dbHelper;
 
   @override
   void initState() {
@@ -61,12 +64,21 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  users.userName = _textEditingUsernameController.text;
-                  users.firstName = _textEditingFirstNameontroller.text;
-                  users.lastName = _textEditingLastNameController.text;
-                  users.email = _textEditingEmailController.text;
-                  users.password = _textEditingPasswordController.text;
-                  users.dob = _textEditingDOBController.text;
+                  if (_textEditingUsernameController.text.length > 1 &&
+                      _textEditingPasswordController.text.length > 1) {
+                    if (users != null) {
+                      users.userName = _textEditingUsernameController.text;
+                      users.firstName = _textEditingFirstNameontroller.text;
+                      users.lastName = _textEditingLastNameController.text;
+                      users.email = _textEditingEmailController.text;
+                      users.password = _textEditingPasswordController.text;
+                      users.dob = _textEditingDOBController.text;
+                       Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => UserProfileWidget()));
+                    }
+                  }
                 },
               )),
           Container(

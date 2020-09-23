@@ -1,6 +1,7 @@
 import 'package:codechallange/registrationPageWidget.dart';
 import 'package:codechallange/textFormFieldUtil.dart';
 import 'package:codechallange/user.dart';
+import 'package:codechallange/userProfileWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,21 +11,21 @@ class SignInWidget extends StatefulWidget {
 }
 
 class _SignInWidgetState extends State<SignInWidget> {
-    User users;
+  User users;
 
   final TextEditingController _textEditingUsernameController =
       TextEditingController();
   final TextEditingController _textEditingPasswordController =
       TextEditingController();
 
-
-@override
+  @override
   void initState() {
-WidgetsBinding.instance.addPostFrameCallback((_) {
-          users = Provider.of<User>(context);
-        });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      users = Provider.of<User>(context, listen: false);
+    });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,8 +50,17 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-        users.userName = _textEditingUsernameController.text;
-                  users.password = _textEditingPasswordController.text;
+                  if (_textEditingUsernameController.text.length > 1 &&
+                      _textEditingPasswordController.text.length > 1) {
+                    if (users != null) {
+                      users.userName = _textEditingUsernameController.text;
+                      users.password = _textEditingPasswordController.text;
+                      Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => UserProfileWidget()));
+                    }
+                  }
                 },
               )),
           Container(
