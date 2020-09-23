@@ -21,7 +21,8 @@ class _SignInWidgetState extends State<SignInWidget> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      users = Provider.of<User>(context, listen: false);
+      users = Provider.of<User>(context,listen: false);
+      print(users == null);
     });
     super.initState();
   }
@@ -52,13 +53,16 @@ class _SignInWidgetState extends State<SignInWidget> {
                 onPressed: () {
                   if (_textEditingUsernameController.text.length > 1 &&
                       _textEditingPasswordController.text.length > 1) {
+                    print(users == null);
+
                     if (users != null) {
                       users.userName = _textEditingUsernameController.text;
                       users.password = _textEditingPasswordController.text;
+                      print("USerAddes");
                       Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => UserProfileWidget()));
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => UserProfileWidget()));
                     }
                   }
                 },

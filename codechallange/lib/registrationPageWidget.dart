@@ -30,7 +30,7 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      users = Provider.of<User>(context);
+      users = Provider.of<User>(context, listen: false);
     });
     super.initState();
   }
@@ -48,13 +48,13 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
           Padding(
             padding: EdgeInsets.all(20),
           ),
-          TextFieldUtil(_textEditingUsernameController, "Username"),
-          TextFieldUtil(_textEditingPasswordController, "Password",
-              hideText: true),
           TextFieldUtil(_textEditingFirstNameontroller, "First Name"),
           TextFieldUtil(_textEditingLastNameController, "Last Name"),
           TextFieldUtil(_textEditingDOBController, "Date of Birth"),
           TextFieldUtil(_textEditingEmailController, "Email Adress"),
+          TextFieldUtil(_textEditingUsernameController, "Username"),
+          TextFieldUtil(_textEditingPasswordController, "Password",
+              hideText: true),
           Container(
               width: MediaQuery.of(context).size.width - 40,
               child: RaisedButton(
@@ -73,10 +73,10 @@ class _RegistrationWidgetState extends State<RegistrationWidget> {
                       users.email = _textEditingEmailController.text;
                       users.password = _textEditingPasswordController.text;
                       users.dob = _textEditingDOBController.text;
-                       Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => UserProfileWidget()));
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => UserProfileWidget()));
                     }
                   }
                 },
